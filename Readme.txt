@@ -1,0 +1,1 @@
+This program provides information about employees. Please provide the type (Business_contact or Base_contact) and additional generated output (with Yes or No). You should also provide the amount, if you want to get additional data.
