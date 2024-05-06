@@ -42,16 +42,21 @@ if __name__ == "__main__":
         amount=0
 
 
-    def create_list(type,amount):
+    def create_contacts(type,amount):
         contact_list=[]
+        print("\nGenerated output: ")
         if type=="Base_contact":
             for x in range (0,amount):
                 first_name=fake.first_name()
                 last_name=fake.last_name()
                 phone=f"0048{fake.msisdn()}"
                 mail=f"{first_name}.{last_name}@{fake.domain_name()}" 
+
                 contact_list.append((first_name,last_name,phone, mail))
-            return contact_list
+            for x in range (0,amount): 
+                contact=BaseContact(*contact_list[x]).contact()
+                contact_length=BaseContact(*contact_list[x]).label_length
+                print(contact,contact_length)
         elif type=="Business_contact":
             for x in range (0,amount):
                 company=fake.company()
@@ -63,22 +68,10 @@ if __name__ == "__main__":
                 mail=f"{first_name}.{last_name}@{fake.domain_name()}" 
             
                 contact_list.append((company,work_phone,first_name,last_name,phone, position,mail))
-            return contact_list
+            for x in range (0,amount):    
+                contact=BusinessContact(*contact_list[x]).business_contact()
+                contact_length=BusinessContact(*contact_list[x]).label_length    
+                print(contact,contact_length)
 
 
-    generated_list=create_list(type,amount)
-
-
-    def create_contact(type):
-        print("\nGenerated output: ")
-        for x in range (0,len(generated_list)):
-            if type=="Business_contact":
-                contact=BusinessContact(*generated_list[x]).business_contact()
-                contact_length=BusinessContact(*generated_list[x]).label_length
-            elif type=="Base_contact":
-                contact=BaseContact(*generated_list[x]).contact()
-                contact_length=BaseContact(*generated_list[x]).label_length
-            print(contact,contact_length)
-
-
-    create_contact(type)
+    create_contacts(type,amount)
