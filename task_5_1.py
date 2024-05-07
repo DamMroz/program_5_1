@@ -105,6 +105,3 @@ if __name__ == "__main__":
 
     
     print(create_contacts(type, int(amount)))
-
-    
-
